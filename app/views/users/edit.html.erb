@@ -1,0 +1,12 @@
+<h3>編集画面</h3>
+
+<%= form_with model:@user,local:true do |f| %>
+
+<p><%= f.text_field:name %></p>
+
+<p><%= f.attachment_field:profile_image %></p>
+
+<p><%= f.submit "更新" %></p>
+
+
+<% end %>

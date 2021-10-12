@@ -1,0 +1,9 @@
+<div class="card w-100 mx-auto shadow-sm">
+  <%= attachment_image_tag user,:profile_image,fallback:"no_image.jpg",class:"card-img-top" %>
+  <div class="card-body">
+    <div class="row mx-auto">
+    <h4><%= user.name %></h4>
+    <%= link_to edit_user_path(user.id) do %><p class="btn btn-outline-secondary btn-sm ml-3">編集</p><% end %>
+    </div>
+  </div>
+</div>

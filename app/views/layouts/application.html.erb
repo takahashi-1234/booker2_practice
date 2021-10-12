@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdow">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <%= link_to root_path do %><li class="nav-item nav-link mx2">Home</li><% end %>
-            <%= link_to books_path do %><li class="nav-item nav-link mx2">Books</li><% end %>
+            <%= link_to user_path(current_user.id) do %><li class="nav-item nav-link mx-2">Home</li><% end %>
+            <%= link_to books_path do %><li class="nav-item nav-link mx-2">Books</li><% end %>
             <%= link_to destroy_user_session_path,method: :delete do %><li class="nav-item nav-link mx2">Log out</li><% end %>
             <% else %>
             <li class="nav-item mx2"><span class="nav-link">About</span></li>
-            <%= link_to new_user_registration_path do %><li class="nav-item mx2 nav-link">Sign up</li><% end %>
-            <%= link_to new_user_session_path do %><li class="nav-item mx2 nav-link">Sign in</li><% end %>
+            <%= link_to new_user_registration_path do %><li class="nav-item mx-2 nav-link">Sign up</li><% end %>
+            <%= link_to new_user_session_path do %><li class="nav-item mx-2 nav-link">Sign in</li><% end %>
             <% end %>
           </ul>
         </div>
