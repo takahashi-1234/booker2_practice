@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="shadow-sm mb-3">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="navbar-brand p-3">bookers</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target"#navbarNavDropdown" aria-control="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdow">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <%= link_to root_path do %><li class="nav-item nav-link mx2">Home</li><% end %>
+            <%= link_to books_path do %><li class="nav-item nav-link mx2">Books</li><% end %>
+            <%= link_to destroy_user_session_path,method: :delete do %><li class="nav-item nav-link mx2">Log out</li><% end %>
+            <% else %>
+            <li class="nav-item mx2"><span class="nav-link">About</span></li>
+            <%= link_to new_user_registration_path do %><li class="nav-item mx2 nav-link">Sign up</li><% end %>
+            <%= link_to new_user_session_path do %><li class="nav-item mx2 nav-link">Sign in</li><% end %>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+  </body>
+</html>
