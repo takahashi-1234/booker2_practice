@@ -1,0 +1,32 @@
+<h1>検索結果/検索ワード:<%= @content%></h1>
+<% if @model=="user" %>
+  <table class="table">
+    <thead>
+      <th>image</th>
+      <th>name</th>
+    </thead>
+    <% @records.each do |user| %>
+    <tr>
+      <td><%= attachment_image_tag user,:profile_image,fallback:"no_image.jpg",size:"60x66" %></td>
+      <td><%= user.name %></td>
+    </tr>
+    <% end %>
+  </table>
+<% elsif @model=="book" %>
+  <table class="table">
+    <thead>
+      <th>image</t>
+      <th>title</th>
+      <th>body</th>
+    </thead>
+    <% @records.each do |book| %>
+    <tr>
+      <td><%= attachment_image_tag book.user,:profile_image,fallback:"no_image.jpg",size:"60x66" %></td>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h3>検索結果なし</h3>
+<% end %>

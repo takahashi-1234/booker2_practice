@@ -4,6 +4,12 @@ class BooksController < ApplicationController
     @book=Book.new
     @books=Book.all
     @user=User.find(current_user.id)
+
+    @user_books=@user.books
+    @favorites_count=0
+    @user_books.each do |book|
+      @favorites_count+=book.favorites.count
+    end
   end
 
   def create
@@ -19,9 +25,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book=Book.new
     @select_book=Book.find(params[:id])
-    @user=User.find(current_user.id)
+    @comment=Comment.new
   end
 
   def destroy

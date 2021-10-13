@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @book=Book.new
     @books=@user.books
+
+    @favorites_count=0
+    @books.each do |book|
+      @favorites_count+=book.favorites.count
+    end
   end
 
   def edit

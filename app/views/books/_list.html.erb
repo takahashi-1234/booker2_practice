@@ -10,11 +10,27 @@
   <tbody>
     <% books.each do |book| %>
     <tr>
-      <td><a href="/users/<%=book.user.id %>"><%= attachment_image_tag book.user,:profile_image,fallback:"no_image.jpg",size:"60x70" %></a></td>
+      <td><a href="/users/<%=book.user.id %>"><%= attachment_image_tag book.user,:profile_image,fallback:"no_image.jpg",size:"60x66" %></a></td>
       <td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
       <td><%= book.body %></td>
       <% if book.user.id==current_user.id %>
+        <td></td>
         <td><%= link_to "削除",book_path(book.id) ,method: :delete ,"data-confirm"=>"本当に削除しますか？",class:"btn btn-danger" %></td>
+      <% else %>
+        <% if book.favorited_by? (current_user) %>
+          <td>
+            <%= link_to book_favorites_path(book.id),method: :delete do %>
+              <p class="text-danger">♡<%= book.favorites.count %>いいね</p>
+            <% end %>
+          </td>
+        <% else %>
+        <td>
+          <%= link_to book_favorites_path(book.id),method: :post do %>
+            <p class="text-primary">♡<%= book.favorites.count %>いいね</p>
+          <% end %>
+        </td>
+        <% end %>
+       <td>コメント件数:<%= book.comments.count %></td>
       <% end %>
     </tr>
     <% end %>

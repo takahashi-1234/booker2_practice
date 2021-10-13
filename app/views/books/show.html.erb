@@ -1,11 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-      <%= render "users/profile",user:@user  %>
-      <%= render "books/new",book:@book %>
+      <p>新規投稿</p>
+        <%= form_with(model:[@select_book,@comment],local:true) do |f| %>
+        <%= f.text_area:comment,placeholder:"コメントをここに",class:"form-control input-lg d-inline-block" %>
+        <%= f.submit "投稿する" ,class:"btn btn-secondary"%>
+        <% end %>
     </div>
     <div class="col-lg-9">
-     <%= @select_book.title %>
+     <h1><%= @select_book.title %>-コメント件数:<%= @select_book.comments.count %></h1>
+     <table class="table">
+       <thead>
+         <td>user_info</td>
+         <td>comment</td>
+         <td>time</td>
+       </thead>
+       <% @select_book.comments.each do |comment| %>
+       <tr>
+         <td>
+           <%= attachment_image_tag comment.user ,:profile_image,fallback:"no_image.jpg",size:"60x66" %><br>
+           <%= comment.user.name %>
+         </td>
+         <td><%= comment.comment %></td>
+         <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
+       </tr>
+       <% end %>
+      </table>
     </div>
   </div>
 </div>

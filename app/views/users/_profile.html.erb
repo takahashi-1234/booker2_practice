@@ -5,5 +5,6 @@
     <h4><%= user.name %></h4>
     <%= link_to edit_user_path(user.id) do %><p class="btn btn-outline-secondary btn-sm ml-3">編集</p><% end %>
     </div>
+    <p>いいねの数:<%= favorites_count %></p>
   </div>
 </div>
